@@ -9,7 +9,7 @@ function createBoard(n, str){
     freq = -1;
   }
 
-  var PIECE_CHARS = "PNBRQKHS";
+  var PIECE_CHARS = "PNBRQKHSC";
   var SIDE_COUNT = 6;
   var board = new Array();
   for(var s = 0; s < SIDE_COUNT; s++){
@@ -804,7 +804,8 @@ function setSelection(s, boardX, boardY){
       [0,-1],[0,-1],[0,-1],[0,-1]
       ],   // knight direction (simplified for the weird corner case)
       [[0,B_N],[0,-B_N],[B_N,0],[-B_N,0]], // hand turn (Rubik's slice move)
-      [] // splatoon
+      [], // splatoon
+	  [[0,0],[0,1],[1,0],[1,1]] // cone
       ];
   // 1st number is the direction type (index) the piece can do. The second number is whether it can move 
   // 2nd number whether the piece can:
@@ -823,7 +824,8 @@ function setSelection(s, boardX, boardY){
       [[1,4,0],[0,4,0]], // queen
       [[0,2,0],[1,2,0]], // king
       [[0,2,0],[1,2,0],[3,3,1]], // hand
-      [[4,0,0],[0,2,0],[1,2,0]] // splatoon
+      [[4,0,0],[0,2,0],[1,2,0]], // splatoon
+	  [[0,7,5],[1,0,0],[3,4,0]] // cone
       ];
     for(var dt = 0; dt < piece_dires[type].length; dt++){
         var dire_type = piece_dires[type][dt][0];
@@ -1041,7 +1043,7 @@ var turn = 0;
 var W_W = 1920;
 var W_H = 1080;
 var B_N = 7;
-var PIECE_TYPE_COUNT = 8;
+var PIECE_TYPE_COUNT = 9;
 var PLAYER_COLORS = [
 [[255,255,255],[0,0,0],[255,235,241]],
 [[0,0,0],[255,255,255],[90,90,90]],
